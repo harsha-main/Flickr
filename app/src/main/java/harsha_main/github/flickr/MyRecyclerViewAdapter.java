@@ -98,18 +98,26 @@ public class MyRecyclerViewAdapter extends RecyclerView.Adapter<MyRecyclerViewAd
             public void onResponse(String response) {
                 String string="";
                 String s[]=response.split("realname");
+                if(s.length<2){error();return;}
                 String info[]=s[1].split("\"");
-                String title=response.split("<title>")[1].split("<")[0];
+                String t[]=response.split("<title>");
+                if(t.length<2){error();return;}
+                String title=t[1].split("<")[0];
                 string+=title;
+                if(info.length<4){error();return;}
                 string+="\n Name: "+info[1] + "\n Location: "+info[3];
                 string += "\nDate taken: "+response.split("taken=")[1].split("\"")[1];
                holder.text.setText(string);
+            }
+            void error(){
+                Toast.makeText(c,"API Error, unable to fetch details",Toast.LENGTH_SHORT).show();
             }
         },
 
                 new Response.ErrorListener() {
                     public void onErrorResponse(VolleyError error) {
 
+                        Toast.makeText(c,"Some Error Occurred, unable to fetch details",Toast.LENGTH_SHORT).show();
                     }
                 });
         RequestQueue queue = Volley.newRequestQueue(c);

@@ -29,8 +29,11 @@
 <TextView
     android:id="@+id/text"
     android:textSize="17dp"
-    android:layout_width="match_parent"
+    android:layout_width="345dp"
     android:layout_height="wrap_content"
     android:gravity="center"
+    android:layout_gravity="center"
+    android:textColor="@android:color/white"
+    android:background="@android:color/holo_blue_dark"
     android:visibility="gone"/>
 </LinearLayout>
